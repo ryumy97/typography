@@ -1,0 +1,183 @@
+* {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    -webkit-user-drag: none; 
+    -khtml-user-drag: none; 
+    -moz-user-drag: none;
+    -ms-user-drag: none;
+    -o-user-drag: none; 
+    user-drag: none; 
+
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    background-color: #111111;
+    
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Roboto', sans-serif;
+
+    overscroll-behavior-x: none;
+}
+
+.container {
+    max-width: 90vh;
+    width: 100%;
+    height: 100%;
+
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 3em 7em 1fr 8em 3em;
+    grid-template-rows: 3em 2em 1fr 5em 3em;
+
+
+    background-color: #000000;
+    color: white;
+}
+
+.headingContainer {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.headingContainer h1 {
+    font-size: 2.5em;
+}
+
+.number {
+    grid-column: 2;
+    grid-row: 4;
+
+    align-self: end;
+
+    font-size: 5em;
+}
+
+.description {
+    grid-column: 4;
+    grid-row: 4;
+
+    align-self: end;
+
+    font-size: 0.9em;
+}
+
+.posterDescription {
+    display: block;
+
+    grid-column: 4;
+    grid-row: 2;
+    
+    justify-self: end;
+    text-align: end;
+
+    font-size: 0.9em;
+}
+
+.projectName {
+    margin-bottom: 1em;
+}
+
+.projectDescription {
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+.projectUrl {
+    display: block;
+    margin-bottom: 1em;
+    font-style: italic;
+}
+
+.keyboardButton {
+    grid-column: 3;
+    grid-row: 5;
+
+    width: fit-content;
+}
+
+.hovering {
+    color: white;
+    transition: 0.25s ease-in-out;
+
+    z-index: 100;
+}
+
+.hovering:hover {
+    color:red;
+    cursor: pointer;
+
+    transition: 0.25s ease-in-out;
+}
+
+.container canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+}
+
+.keyboardinput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+
+    z-index: 900;
+
+    cursor: text;
+
+    background-color: #ffffff;
+
+    transform: translateY(100%);
+
+    transition: 0.25s ease-in-out;
+}
+
+.keyboardinput.on {
+    transform: translateY(0);
+
+    transition: 0.25s ease-in-out;
+}
+
+.keyboardinput.off {
+    transform: translateY(100%);
+}
+
+.keyboardinput input {
+    background-color: #ffffff;
+    border: none;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+
+    margin: 1em;
+    width: 80%;
+}
