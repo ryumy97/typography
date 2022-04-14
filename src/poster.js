@@ -1,5 +1,7 @@
+import { formatContentNumber } from './lib/getContent.js'
+
 export class Poster {
-    constructor(canvas, contentNumber) {
+    constructor(canvas, content) {
         this.container = document.createElement('div');
         this.container.className = 'container';
 
@@ -12,12 +14,12 @@ export class Poster {
         this.heading.innerText = 'Typography';
 
         this.projectHeading = document.createElement('h2');
-        this.projectHeading.innerText = 'Metaball';
+        this.projectHeading.innerText = content.title;
 
         //number
         this.number = document.createElement('h1');
         this.number.className = 'number'
-        this.number.innerText = '01';
+        this.number.innerText = formatContentNumber(content.number);
 
         //description
         this.descriptionContianer = document.createElement('div');
@@ -33,6 +35,7 @@ export class Poster {
 
         this.projectUrl = document.createElement('a');
         this.projectUrl.className = 'projectUrl hovering';
+        this.projectUrl.href = 'http://typography.ryumy.com/';
         this.projectUrl.innerText = 'typography.ryumy.com';
 
         this.creator = document.createElement('p');

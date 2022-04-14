@@ -1,12 +1,20 @@
 import { Poster } from './poster.js';
-import { Metaball } from './drawing/metaball/index.js';
+import { getContent } from './lib/getContent.js';
+import { getLocation, getContentNumberByName } from './routes.js';
 
 class App {
     constructor() {
-        this.content = new Metaball();
-        this.canvas = this.content.getCanvas();
+        this.location = getLocation();
+        this.contentNumber = getContentNumberByName(this.location);
 
-        this.poster = new Poster(this.canvas, 1);
+        if (this.contentNumber == 0) {
+            
+        }
+
+        this.content = getContent(this.contentNumber);
+        this.canvas = this.content.drawing.getCanvas();
+
+        this.poster = new Poster(this.canvas, this.content);
 
         window.addEventListener('resize', this.resize.bind(this), false);
         window.addEventListener('_textChange', this.textChange.bind(this), false);
@@ -21,9 +29,16 @@ class App {
         this.now = Date.now();
 
         const elapsed = this.then ? this.now - this.then : 0;
+        if (elapsed > 500) {
+            this.then = this.now;
+
+            requestAnimationFrame(this.draw.bind(this));
+
+            return
+        }
         this.progress += elapsed / 1000;
 
-        this.content.draw(this.progress, elapsed);
+        this.content.drawing.draw(this.progress, elapsed);
 
         this.then = this.now;
 
@@ -31,12 +46,12 @@ class App {
     }
 
     resize() {
-        this.content.resize();
+        this.content.drawing.resize();
     }
 
     textChange(e) {
         const text = e.detail.text;
-        this.content.textChange(text);
+        this.content.drawing.textChange(text);
 
         this.progress = 0;
     }

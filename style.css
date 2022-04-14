@@ -80,6 +80,8 @@ body {
     align-self: end;
 
     font-size: 0.9em;
+
+    z-index: 100;
 }
 
 .posterDescription {
@@ -107,6 +109,7 @@ body {
     display: block;
     margin-bottom: 1em;
     font-style: italic;
+    text-decoration: none;
 }
 
 .keyboardButton {
