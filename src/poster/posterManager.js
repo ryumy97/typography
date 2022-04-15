@@ -67,7 +67,8 @@ export class PosterManager {
                 this.selectTimeout = null;
             }, 500)
             
-            this.posters.find(poster => poster.index === this.selectedIndex).hideImage();
+            const poster = this.posters.find(poster => poster.index === e.detail.index);
+            poster && poster.hideImage()
 
             this.selectedIndex = e.detail.index;
             this.scrollEnabled = false
