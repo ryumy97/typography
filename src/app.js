@@ -1,4 +1,4 @@
-import { Poster } from './poster.js';
+import { Poster, PosterManager } from './poster/index.js';
 import { getContent } from './lib/getContent.js';
 import { getLocation, getContentNumberByName } from './routes.js';
 
@@ -7,22 +7,42 @@ class App {
         this.location = getLocation();
         this.contentNumber = getContentNumberByName(this.location);
 
-        if (this.contentNumber == 0) {
-            
-        }
-
+        this.posters = new PosterManager();
         this.content = getContent(this.contentNumber);
         this.canvas = this.content.drawing.getCanvas();
 
-        this.poster = new Poster(this.canvas, this.content);
-
+        this.progress = 0;
+        requestAnimationFrame(this.draw.bind(this));
+        window.addEventListener('_selectPoster', this.selectPoster.bind(this), false);
+        window.addEventListener('_viewOthersTransition', this.viewOthersTransition.bind(this), false);
+        window.addEventListener('_viewOthers', this.viewOthers.bind(this), false);
         window.addEventListener('resize', this.resize.bind(this), false);
         window.addEventListener('_textChange', this.textChange.bind(this), false);
         this.resize();
+    }
+
+    selectPoster(e) {
+        this.contentNumber = e.detail.number;
+        this.content = getContent(this.contentNumber);
+        this.canvas = this.content.drawing.getCanvas();
+
+        this.posters.appendCanvas(this.canvas);
+        this.posters.removeThumbnailEvents();
+        this.posters.addPosterEvents(e.detail.index);
+
+        this.resize();
 
         this.progress = 0;
+    }
 
-        requestAnimationFrame(this.draw.bind(this));
+    viewOthersTransition(e) {
+        this.canvas && this.posters.removeCanvas(this.canvas);
+        this.content = null;
+    }
+    
+    viewOthers(e) {
+        this.posters.removePosterEvents(e.detail.index);
+        this.posters.addThumbnailEvents();       
     }
 
     draw(t) {
@@ -38,7 +58,9 @@ class App {
         }
         this.progress += elapsed / 1000;
 
-        this.content.drawing.draw(this.progress, elapsed);
+        this.posters && this.posters.update();
+
+        this.content && this.content.drawing.draw(this.progress, elapsed);
 
         this.then = this.now;
 
@@ -46,12 +68,12 @@ class App {
     }
 
     resize() {
-        this.content.drawing.resize();
+        this.content && this.content.drawing.resize();
     }
 
     textChange(e) {
         const text = e.detail.text;
-        this.content.drawing.textChange(text);
+        this.content && this.content.drawing.textChange(text);
 
         this.progress = 0;
     }

@@ -1,5 +1,11 @@
 import * as drawing from '../drawing/index.js';
 
+const pages = [1, 2];
+
+export function getAllContents() {
+    return pages.map(getContentMetadata);
+}
+
 export function getContent(number) {
     switch(number) {
         case 1: 
@@ -16,8 +22,8 @@ export function getContent(number) {
             }
         default:
             return {
-                drawing: new drawing.Metaball(),
-                title: 'Metaball',
+                drawing: new drawing.Template(),
+                title: 'Nothing Here',
                 number
             }
     }
@@ -39,7 +45,7 @@ export function getContentMetadata(number) {
             }
         default:
             return {
-                title: 'Metaball',
+                title: 'Nothing Here',
                 theme: 'dark'
             }
 

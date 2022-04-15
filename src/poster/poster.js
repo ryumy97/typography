@@ -1,9 +1,12 @@
-import { formatContentNumber } from './lib/getContent.js'
+import { formatContentNumber } from '../lib/getContent.js'
 
 export class Poster {
-    constructor(canvas, content) {
+    constructor(container, data, index, selectedIndex) {
+        this.index = index;
+        this.data = data;
+
         this.container = document.createElement('div');
-        this.container.className = 'container';
+        this.container.className = `container ${data.theme}`;
 
         //heading
         this.headingContainer = document.createElement('div');
@@ -14,12 +17,12 @@ export class Poster {
         this.heading.innerText = 'Typography';
 
         this.projectHeading = document.createElement('h2');
-        this.projectHeading.innerText = content.title;
+        this.projectHeading.innerText = data.title;
 
         //number
         this.number = document.createElement('h1');
         this.number.className = 'number'
-        this.number.innerText = formatContentNumber(content.number);
+        this.number.innerText = formatContentNumber(data.number);
 
         //description
         this.descriptionContianer = document.createElement('div');
@@ -34,8 +37,7 @@ export class Poster {
         this.projectDescription.innerText = 'A collective interactive kinetic typography experiences';
 
         this.projectUrl = document.createElement('a');
-        this.projectUrl.className = 'projectUrl hovering';
-        this.projectUrl.href = 'http://typography.ryumy.com/';
+        this.projectUrl.className = 'projectUrl';
         this.projectUrl.innerText = 'typography.ryumy.com';
 
         this.creator = document.createElement('p');
@@ -44,7 +46,7 @@ export class Poster {
 
         //see others
         this.posterLinks = document.createElement('div');
-        this.posterLinks.className = 'posterDescription hovering'
+        this.posterLinks.className = 'posterDescription'
 
         this.posterDescription = document.createElement('h4');
         this.posterDescription.innerText = 'See others'
@@ -54,7 +56,7 @@ export class Poster {
         
         //key
         this.keyboard = document.createElement('h4');
-        this.keyboard.className = 'keyboardButton hovering';
+        this.keyboard.className = 'keyboardButton';
         this.keyboard.innerText = 'keyboard.'
 
         //append all
@@ -80,12 +82,14 @@ export class Poster {
             this.number,
             this.descriptionContianer,
             this.posterLinks,
-            this.keyboard,
-            canvas ? canvas : []
+            this.keyboard
         )
+        
+        this.move(selectedIndex);
+        container.append(this.container);
 
-        document.body.append(this.container);
-
+        //projectUrl
+        this.projectUrlClickEvent = this.copyUrl.bind(this);
 
         //key input
         this.keyboardinputContainer = document.createElement('div');
@@ -99,17 +103,12 @@ export class Poster {
 
         this.keyboardinput.placeholder = 'Enter text...';
 
-        document.body.append(this.keyboardinputContainer);
-
         //eventhandlers
         this.keyboardToggleBinded = this.keyboardToggle.bind(this);
+        this.keyboardFocusEvent = this.keyboardFocus.bind(this);
+        this.seeOthersToggleEvent = this.seeOthersToggle.bind(this);
 
-        this.keyboard.addEventListener('click', this.keyboardToggleBinded, false);
-        this.keyboardinput.addEventListener('keypress', this.keyboardInput, false);
-        this.keyboardinputContainer.addEventListener('click', this.keyboardFocus.bind(this), false)
-        this.posterLinks.addEventListener('click', this.seeOthersToggle.bind(this), false);
-
-        window.addEventListener('_textChange', this.keyboardToggleBinded, false);
+        this.container.addEventListener('click', this.onClick.bind(this), false);
     }
 
     keyboardToggle(e) {
@@ -157,10 +156,82 @@ export class Poster {
             this.keyboardToggle();
         }
 
-        const event = new CustomEvent('_viewOthers', {
-
+        const event = new CustomEvent('_viewOthersTransition', {
+            detail: {
+                index: this.index,
+                number: this.data.number
+            }
         })
 
         window.dispatchEvent(event);
+    }
+
+    onClick(e) {
+        const event = new CustomEvent('_selectThumbnail', {
+            detail: {
+                index: this.index,
+                number: this.data.number
+            }
+        });
+
+        dispatchEvent(event);
+    }
+
+    move(currentIndex) {
+        const radius = 600;
+
+        const angle = (currentIndex - this.index) * 10 - 90;
+
+        const x = -radius * Math.sin(Math.PI * 2 * angle / 360) - radius;
+        const y = -radius * Math.cos(Math.PI * 2 * angle / 360);
+
+        const scale = (this.index - currentIndex) > 0
+            ? 1 - (this.index - currentIndex) * 0.1
+            : 1 - (currentIndex - this.index) * 0.1
+
+        this.container.style.transform = `
+            translate3d(${x}%,${y}%,0)
+            rotate(${(this.index - currentIndex) * 10}deg)
+            scale(${scale})`;
+    }
+
+    copyUrl() {
+        navigator.clipboard.writeText(window.location.toString());
+    }
+
+    addPosterEvents() {
+        document.body.append(this.keyboardinputContainer);
+
+        this.projectUrl.classList.add('hovering');
+        this.projectUrl.addEventListener('click', this.projectUrlClickEvent, false);
+
+        this.keyboard.addEventListener('click', this.keyboardToggleBinded, false);
+        this.keyboard.classList.add('hovering');
+        
+        this.keyboardinput.addEventListener('keypress', this.keyboardInput, false);
+        this.keyboardinputContainer.addEventListener('click', this.keyboardFocusEvent, false)
+
+        this.posterLinks.addEventListener('click', this.seeOthersToggleEvent, false);
+        this.posterLinks.classList.add('hovering');
+
+        window.addEventListener('_textChange', this.keyboardToggleBinded, false);
+    }
+
+    removePosterEvents() {
+        document.body.removeChild(this.keyboardinputContainer);
+
+        this.projectUrl.classList.remove('hovering');
+        this.projectUrl.removeEventListener('click', this.projectUrlClickEvent, false);
+
+        this.keyboard.removeEventListener('click', this.keyboardToggleBinded, false);
+        this.keyboard.classList.remove('hovering');
+        
+        this.keyboardinput.removeEventListener('keypress', this.keyboardInput, false);
+        this.keyboardinputContainer.removeEventListener('click', this.keyboardFocusEvent, false)
+
+        this.posterLinks.removeEventListener('click', this.seeOthersToggleEvent, false);
+        this.posterLinks.classList.remove('hovering');
+
+        window.removeEventListener('_textChange', this.keyboardToggleBinded, false);
     }
 }
