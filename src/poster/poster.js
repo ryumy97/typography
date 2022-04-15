@@ -44,6 +44,15 @@ export class Poster {
         this.creator.className = 'creator';
         this.creator.innerHTML = 'In Ha<br>Ryu';
 
+        if (data.imageUrl) {
+            this.imageContainer = document.createElement('div');
+            this.imageContainer.className = 'image'
+            this.image = new Image();
+            this.image.src = data.imageUrl
+
+            this.imageContainer.append(this.image);
+        }
+
         //see others
         this.posterLinks = document.createElement('div');
         this.posterLinks.className = 'posterDescription'
@@ -52,14 +61,39 @@ export class Poster {
         this.posterDescription.innerText = 'See others'
 
         this.arrow = document.createElement('h4');
-        this.arrow.innerText = '->'
+        this.arrow.innerText = '->';
         
         //key
         this.keyboard = document.createElement('h4');
         this.keyboard.className = 'keyboardButton';
-        this.keyboard.innerText = 'keyboard.'
+        this.keyboard.innerText = 'keyboard.';
+
+        //Metadata
+        this.metadata = document.createElement('div');
+        this.metadata.className = 'metadata';
+
+        this.metadataContainer = document.createElement('div');
+
+        this.metadataHeading = document.createElement('h1');
+        this.metadataHeading.innerText = data.title;
+
+        this.metadataNumber = document.createElement('h2');
+        this.metadataNumber.innerText = formatContentNumber(data.number);
+
+        this.metadataDescription = document.createElement('p');
+        this.metadataDescription.innerText = data.description;
 
         //append all
+        this.metadata.append(
+            this.metadataContainer
+        )
+        
+        this.metadataContainer.append(
+            this.metadataHeading,
+            this.metadataNumber,
+            this.metadataDescription
+        );
+
         this.headingContainer.append(
             this.heading,
             this.projectHeading
@@ -82,7 +116,9 @@ export class Poster {
             this.number,
             this.descriptionContianer,
             this.posterLinks,
-            this.keyboard
+            this.keyboard,
+            this.imageContainer ? this.imageContainer : [],
+            this.metadata
         )
         
         this.move(selectedIndex);
@@ -163,6 +199,8 @@ export class Poster {
             }
         })
 
+        this.showImage();
+
         window.dispatchEvent(event);
     }
 
@@ -178,7 +216,6 @@ export class Poster {
     }
 
     move(currentIndex) {
-        
         const radius = 600;
 
         const angle = (currentIndex - this.index) * 8 - 90;
@@ -240,5 +277,17 @@ export class Poster {
         this.posterLinks.classList.remove('hovering');
 
         window.removeEventListener('_textChange', this.keyboardToggleBinded, false);
+    }
+
+    hideImage() {
+        if (this.imageContainer) {
+            this.imageContainer.style.opacity = '0.0';
+        }
+    }
+
+    showImage() {
+        if (this.imageContainer) {
+            this.imageContainer.style.opacity = '1.0';
+        }
     }
 }

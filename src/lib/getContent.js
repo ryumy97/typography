@@ -35,18 +35,23 @@ export function getContentMetadata(number) {
             return {
                 title: 'Metaball',
                 theme: 'dark',
-                number
+                number,
+                description: 'Blur and threshold',
+                imageUrl: '/assets/Metaball.png'
             }
         case 2:
             return {
                 title: 'Typing',
                 theme: 'dark',
-                number
+                number,
+                description: 'Stack of typing animation'
             }
         default:
             return {
                 title: 'Nothing Here',
-                theme: 'dark'
+                theme: 'dark',
+                number,
+                description: 'Nothing to display'
             }
 
     }

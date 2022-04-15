@@ -4,13 +4,13 @@ import { Poster } from './poster.js';
 export class PosterManager {
     constructor() {
         this.container = document.createElement('div');
-        this.container.className = 'thumbnailContainer'
+        this.container.className = 'thumbnailContainer';
 
         this.scroller = document.createElement('div');
-        this.scroller.className = 'thumbnailScroller'
+        this.scroller.className = 'thumbnailScroller';
 
         this.selectedIndex = 0;
-        this.currentIndex = 0;
+        this.currentIndex = -5;
 
         const pages = getAllContents();
 
@@ -30,11 +30,16 @@ export class PosterManager {
         window.addEventListener('_viewOthersTransition', this.viewOthersEvent, false);
 
         this.scrollEvent = this.onScroll.bind(this);
+        this.selectTimeout = null;
+        this.scrollEnabled = true;
         window.addEventListener('wheel', this.scrollEvent, false);
     }
 
     onScroll(e) {
         console.log(e);
+        if (!this.scrollEnabled) {
+            return;
+        }
 
         this.selectedIndex += e.deltaY * 0.002;
         if (this.selectedIndex > this.maximum + 0.2 - 1) {
@@ -56,11 +61,16 @@ export class PosterManager {
             })
 
             this.scroller.style.transform = 'perspective(10px) translate3d(0, 0, 0px)';
-            setTimeout(() => {
+            
+            this.selectTimeout = this.selectTimeout || setTimeout(() => {
                 dispatchEvent(event);
+                this.selectTimeout = null;
             }, 500)
             
+            this.posters.find(poster => poster.index === this.selectedIndex).hideImage();
+
             this.selectedIndex = e.detail.index;
+            this.scrollEnabled = false
             return;
         }
 
@@ -82,6 +92,7 @@ export class PosterManager {
         }, 500)
 
         this.moveOn = true;
+        this.scrollEnabled = true
     }
 
     update(e) {
