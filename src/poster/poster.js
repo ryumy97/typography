@@ -178,9 +178,10 @@ export class Poster {
     }
 
     move(currentIndex) {
+        
         const radius = 600;
 
-        const angle = (currentIndex - this.index) * 10 - 90;
+        const angle = (currentIndex - this.index) * 8 - 90;
 
         const x = -radius * Math.sin(Math.PI * 2 * angle / 360) - radius;
         const y = -radius * Math.cos(Math.PI * 2 * angle / 360);
@@ -191,8 +192,14 @@ export class Poster {
 
         this.container.style.transform = `
             translate3d(${x}%,${y}%,0)
-            rotate(${(this.index - currentIndex) * 10}deg)
+            rotate(${(this.index - currentIndex) * 8}deg)
             scale(${scale})`;
+
+        const z = (this.index - currentIndex) > 0
+            ? 100 - (this.index - currentIndex) * 2
+            : 100 - (currentIndex - this.index) * 2
+
+        this.container.style.zIndex = Math.floor(z);
     }
 
     copyUrl() {

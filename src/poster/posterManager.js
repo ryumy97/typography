@@ -27,11 +27,27 @@ export class PosterManager {
         this.onSelectEvent = this.onSelect.bind(this);
         this.viewOthersEvent = this.viewOthers.bind(this);
         window.addEventListener('_selectThumbnail', this.onSelectEvent, false);
-        window.addEventListener('_viewOthersTransition', this.viewOthersEvent )
+        window.addEventListener('_viewOthersTransition', this.viewOthersEvent, false);
+
+        this.scrollEvent = this.onScroll.bind(this);
+        window.addEventListener('wheel', this.scrollEvent, false);
+    }
+
+    onScroll(e) {
+        console.log(e);
+
+        this.selectedIndex += e.deltaY * 0.002;
+        if (this.selectedIndex > this.maximum + 0.2 - 1) {
+            this.selectedIndex = this.maximum + 0.2 - 1;
+        }
+        if (this.selectedIndex < -0.2) {
+            this.selectedIndex = -0.2;
+        }
     }
 
     onSelect(e) {
-        if (this.selectedIndex === e.detail.index) {
+        console.log(this.selectedIndex, e.detail.index)
+        if (this.selectedIndex + 0.5 > e.detail.index && this.selectedIndex - 0.5 < e.detail.index) {
             const event = new CustomEvent('_selectPoster', {
                 detail: {
                     index: e.detail.index,
@@ -44,8 +60,7 @@ export class PosterManager {
                 dispatchEvent(event);
             }, 500)
             
-
-            this.moveOn = false;
+            this.selectedIndex = e.detail.index;
             return;
         }
 
@@ -60,7 +75,7 @@ export class PosterManager {
             }
         })
 
-        this.scroller.style.transform = 'perspective(10px) translate3d(-100%, 0, -25px)';
+        this.scroller.style.transform = 'perspective(10px) translate3d(-100%, 0, -20px)';
     
         setTimeout(() => {
             dispatchEvent(event);
@@ -92,10 +107,12 @@ export class PosterManager {
 
     removeThumbnailEvents() {
         window.removeEventListener('_selectThumbnail', this.onSelectEvent, false);
+        window.removeEventListener('wheel', this.scrollEvent, false);
     }
 
     addThumbnailEvents() {
         window.addEventListener('_selectThumbnail', this.onSelectEvent, false);
+        window.addEventListener('wheel', this.scrollEvent, false);
     }
 
     removePosterEvents(index) {

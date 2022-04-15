@@ -215,7 +215,7 @@ canvas {
     display: block;
     position: absolute;
 
-    transform: perspective(10px) translate3d(-100%, 0, -25px);
+    transform: perspective(10px) translate3d(-100%, 0, -20px);
     transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
 }
