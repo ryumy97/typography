@@ -1,10 +1,12 @@
 export class Typing {
     constructor() {
-
+        this.canvas = document.createElement('div');
+        this.canvas.className = 'drawing';
+        this.canvas.innerText = 'Typing'
     }
 
     getCanvas() {
-        return null;
+        return this.canvas;
     }
 
     textChange(str) {

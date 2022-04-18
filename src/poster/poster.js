@@ -144,11 +144,12 @@ export class Poster {
         this.keyboardFocusEvent = this.keyboardFocus.bind(this);
         this.seeOthersToggleEvent = this.seeOthersToggle.bind(this);
 
-        this.container.addEventListener('click', this.onClick.bind(this), false);
+        this.container.addEventListener('pointerdown', this.onClick.bind(this), false);
+        this.container.addEventListener('pointerup', this.onUp.bind(this), false);
+        this.container.addEventListener('pointermove', this.onMove.bind(this), false);
     }
 
     keyboardToggle(e) {
-        console.log(e);
         if (this.keyboardinputContainer.on) {
             this.keyboardinputContainer.on = false;
             this.keyboardinputContainer.classList.remove('on');
@@ -205,14 +206,38 @@ export class Poster {
     }
 
     onClick(e) {
-        const event = new CustomEvent('_selectThumbnail', {
+        this.clickEvent = new CustomEvent('_selectThumbnail', {
             detail: {
                 index: this.index,
                 number: this.data.number
             }
         });
 
-        dispatchEvent(event);
+        this.savedX = e.x;
+        this.savedY = e.y;
+
+        this.clickTimeout = setTimeout(() => {
+            this.clickEvent = null;
+        }, 1000);
+    }
+
+    onUp(e) {
+        if (this.clickEvent) {
+            dispatchEvent(this.clickEvent);
+            clearTimeout(this.clickTimeout);
+            this.clickTimeout = null;
+        }
+    }
+
+    onMove(e) {
+        if (
+            (
+                (this.savedX + 30 < e.x || this.savedX - 30 > e.x) ||
+                (this.savedY + 30 < e.y || this.savedY - 30 > e.y) 
+            ) && this.clickEvent
+            ) {
+            this.clickEvent = false;
+        };
     }
 
     move(currentIndex) {

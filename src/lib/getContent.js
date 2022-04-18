@@ -16,7 +16,7 @@ export function getContent(number) {
             }
         case 2: 
             return {
-                drawing: new drawing.Template(),
+                drawing: new drawing.Typing(),
                 title: 'Typing',
                 number
             }

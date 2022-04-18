@@ -29,14 +29,61 @@ export class PosterManager {
         window.addEventListener('_selectThumbnail', this.onSelectEvent, false);
         window.addEventListener('_viewOthersTransition', this.viewOthersEvent, false);
 
-        this.scrollEvent = this.onScroll.bind(this);
         this.selectTimeout = null;
+
+        this.scrollEvent = this.onScroll.bind(this);
         this.scrollEnabled = true;
         window.addEventListener('wheel', this.scrollEvent, false);
+
+        this.mouseClickEvent = this.onClick.bind(this);
+        window.addEventListener('pointerdown', this.mouseClickEvent, false);
+
+        this.clicking = false;
+        this.clickEnabled = true;
+
+        this.mouseMoveEvent = this.onMove.bind(this);
+        window.addEventListener('pointermove', this.mouseMoveEvent, false);
+
+        this.mouseClickEvent = this.onUp.bind(this);
+        window.addEventListener('pointerup', this.mouseClickEvent, false);
+
+        document.body.style.cursor = 'grab';
+    }
+
+    onClick(e) {
+        if (this.clickEnabled) {
+            this.clicking = true;
+            this.y = e.y;
+            document.body.style.cursor = 'grabbing';
+        }
+    }
+
+    onMove(e) {
+        if (!this.clicking) {
+            return;
+        }
+
+        this.selectedIndex += (this.y - e.y) / this.container.clientHeight * 3;
+
+        if (this.selectedIndex > this.maximum + 0.2 - 1) {
+            this.selectedIndex = this.maximum + 0.2 - 1;
+        }
+        if (this.selectedIndex < -0.2) {
+            this.selectedIndex = -0.2;
+        }
+
+        this.y = e.y;
+    }
+
+    onUp(e) {
+        this.clicking = false;
+
+        if (this.clickEnabled) {
+            document.body.style.cursor = 'grab';
+        }
     }
 
     onScroll(e) {
-        console.log(e);
         if (!this.scrollEnabled) {
             return;
         }
@@ -51,7 +98,6 @@ export class PosterManager {
     }
 
     onSelect(e) {
-        console.log(this.selectedIndex, e.detail.index)
         if (this.selectedIndex + 0.5 > e.detail.index && this.selectedIndex - 0.5 < e.detail.index) {
             const event = new CustomEvent('_selectPoster', {
                 detail: {
@@ -71,7 +117,11 @@ export class PosterManager {
             poster && poster.hideImage()
 
             this.selectedIndex = e.detail.index;
-            this.scrollEnabled = false
+            this.scrollEnabled = false;
+            this.clicking = false;
+            this.clickEnabled = false;
+
+            document.body.style.cursor = 'default';
             return;
         }
 
@@ -93,7 +143,9 @@ export class PosterManager {
         }, 500)
 
         this.moveOn = true;
-        this.scrollEnabled = true
+        this.scrollEnabled = true;
+        this.clickEnabled = true;
+        document.body.style.cursor = 'grab';
     }
 
     update(e) {
