@@ -147,6 +147,8 @@ export class Poster {
         this.container.addEventListener('pointerdown', this.onClick.bind(this), false);
         this.container.addEventListener('pointerup', this.onUp.bind(this), false);
         this.container.addEventListener('pointermove', this.onMove.bind(this), false);
+
+        window.addEventListener('_viewOthersFromLocation', this.viewOthersFromLocation.bind(this), false);
     }
 
     keyboardToggle(e) {
@@ -186,7 +188,15 @@ export class Poster {
                 window.dispatchEvent(event);
             }
         }
-    }    
+    }
+
+    viewOthersFromLocation(e) {
+        console.log(e.detail.index, this.index);
+        if (e.detail.index === this.index) {
+            console.log('asc')
+            this.seeOthersToggle(e);
+        }
+    }
     
     seeOthersToggle(e) {
         if (this.keyboardinputContainer.on) {
@@ -196,7 +206,8 @@ export class Poster {
         const event = new CustomEvent('_viewOthersTransition', {
             detail: {
                 index: this.index,
-                number: this.data.number
+                number: this.data.number, 
+                locationUpdate: e.detail.locationUpdate
             }
         })
 
@@ -209,7 +220,8 @@ export class Poster {
         this.clickEvent = new CustomEvent('_selectThumbnail', {
             detail: {
                 index: this.index,
-                number: this.data.number
+                number: this.data.number,
+                locationUpdate: e.detail.locationUpdate
             }
         });
 

@@ -1,15 +1,13 @@
 import { Poster, PosterManager } from './poster/index.js';
-import { getContent } from './lib/getContent.js';
-import { getLocation, getContentNumberByName } from './routes.js';
+import { getContent, getContentMetadata } from './lib/getContent.js';
+import { getLocation, getContentNumberByName, setLocation } from './routes.js';
 
 class App {
     constructor() {
         this.location = getLocation();
         this.contentNumber = getContentNumberByName(this.location);
 
-        this.posters = new PosterManager();
-        this.content = getContent(this.contentNumber);
-        this.canvas = this.content.drawing.getCanvas();
+        this.posters = new PosterManager(this.contentNumber ? this.contentNumber - 1 : 0);
 
         this.progress = 0;
         requestAnimationFrame(this.draw.bind(this));
@@ -18,10 +16,55 @@ class App {
         window.addEventListener('_viewOthers', this.viewOthers.bind(this), false);
         window.addEventListener('resize', this.resize.bind(this), false);
         window.addEventListener('_textChange', this.textChange.bind(this), false);
+        window.addEventListener('popstate', this.popState.bind(this), false);
+
         this.resize();
+
+        if (this.contentNumber) {
+            const event = new CustomEvent('_selectThumbnail', {
+                detail: {
+                    index: this.contentNumber - 1,
+                    number: this.contentNumber,
+                    locationUpdate: false
+                }  
+            })
+
+            dispatchEvent(event);
+        }
+    }
+
+    popState(e) {
+        this.location = getLocation();
+
+        const contentNumber = this.contentNumber;
+        this.contentNumber = getContentNumberByName(this.location);
+
+        if (this.contentNumber) {
+            const event = new CustomEvent('_selectThumbnail', {
+                detail: {
+                    index: this.contentNumber - 1,
+                    number: this.contentNumber,
+                    locationUpdate: true
+                }  
+            })
+    
+            dispatchEvent(event);
+        }
+        else {
+            const event = new CustomEvent('_viewOthersFromLocation', {
+                detail: {
+                    index: contentNumber - 1,
+                    number: contentNumber,
+                    locationUpdate: true
+                }
+            })
+
+            dispatchEvent(event);
+        }
     }
 
     selectPoster(e) {
+        console.log(e);
         this.contentNumber = e.detail.number;
         this.content = getContent(this.contentNumber);
         this.canvas = this.content.drawing.getCanvas();
@@ -33,6 +76,11 @@ class App {
         this.resize();
 
         this.progress = 0;
+
+        const location = getContentMetadata(e.detail.number);
+        if (!e.detail.locationUpdate) {
+            setLocation(location.title)
+        }
     }
 
     viewOthersTransition(e) {
@@ -41,8 +89,13 @@ class App {
     }
     
     viewOthers(e) {
+        console.log(e);
         this.posters.removePosterEvents(e.detail.index);
-        this.posters.addThumbnailEvents();       
+        this.posters.addThumbnailEvents();      
+        
+        if (!e.detail.locationUpdate) {
+            setLocation('')
+        }
     }
 
     draw(t) {

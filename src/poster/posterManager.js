@@ -2,14 +2,14 @@ import { getAllContents } from '../lib/getContent.js';
 import { Poster } from './poster.js';
 
 export class PosterManager {
-    constructor() {
+    constructor(selectedIndex) {
         this.container = document.createElement('div');
         this.container.className = 'thumbnailContainer';
 
         this.scroller = document.createElement('div');
         this.scroller.className = 'thumbnailScroller';
 
-        this.selectedIndex = 0;
+        this.selectedIndex = selectedIndex;
         this.currentIndex = -5;
 
         const pages = getAllContents();
@@ -99,10 +99,13 @@ export class PosterManager {
 
     onSelect(e) {
         if (this.selectedIndex + 0.5 > e.detail.index && this.selectedIndex - 0.5 < e.detail.index) {
+            console.log(e.detail);
+
             const event = new CustomEvent('_selectPoster', {
                 detail: {
                     index: e.detail.index,
-                    number: e.detail.number
+                    number: e.detail.number,
+                    locationUpdate: e.detail.locationUpdate
                 }
             })
 
@@ -132,7 +135,8 @@ export class PosterManager {
         const event = new CustomEvent('_viewOthers', {
             detail: {
                 index: e.detail.index,
-                number: e.detail.number
+                number: e.detail.number,
+                locationUpdate: e.detail.locationUpdate
             }
         })
 
@@ -180,6 +184,7 @@ export class PosterManager {
     }
 
     removePosterEvents(index) {
+        console.log(index);
         const poster = this.posters.find(poster => poster.index === index);
 
         poster.removePosterEvents();

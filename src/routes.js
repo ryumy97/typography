@@ -5,7 +5,8 @@ export function getLocation() {
 }
 
 export function setLocation(loc) {
-    window.history.pushState({}, `Typography - ${loc}`, loc);
+    console.log('location Update')
+    window.history.pushState({}, `Typography - ${loc}`, `#!/${loc}`);
 }
 
 export function getContentNumberByName(name) {

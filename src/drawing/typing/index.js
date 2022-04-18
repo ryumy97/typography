@@ -1,7 +1,7 @@
 export class Typing {
     constructor() {
         this.canvas = document.createElement('div');
-        this.canvas.className = 'drawing';
+        this.canvas.className = 'typing';
         this.canvas.innerText = 'Typing'
     }
 
