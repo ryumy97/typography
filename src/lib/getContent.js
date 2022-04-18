@@ -17,7 +17,7 @@ export function getContent(number) {
         case 2: 
             return {
                 drawing: new drawing.Typing(),
-                title: 'Typing',
+                title: 'Typewriter',
                 number
             }
         default:
@@ -41,10 +41,11 @@ export function getContentMetadata(number) {
             }
         case 2:
             return {
-                title: 'Typing',
+                title: 'Typewriter',
                 theme: 'dark',
                 number,
-                description: 'Stack of typing animation'
+                description: 'Stack of typing animation',
+                imageUrl: '/assets/Typewriting.png'
             }
         default:
             return {

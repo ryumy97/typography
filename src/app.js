@@ -64,7 +64,6 @@ class App {
     }
 
     selectPoster(e) {
-        console.log(e);
         this.contentNumber = e.detail.number;
         this.content = getContent(this.contentNumber);
         this.canvas = this.content.drawing.getCanvas();
@@ -85,13 +84,14 @@ class App {
 
     viewOthersTransition(e) {
         this.canvas && this.posters.removeCanvas(this.canvas);
+        this.content.drawing.removeDOM && this.content.drawing.removeDOM();
+
         this.content = null;
     }
     
     viewOthers(e) {
-        console.log(e);
         this.posters.removePosterEvents(e.detail.index);
-        this.posters.addThumbnailEvents();      
+        this.posters.addThumbnailEvents();
         
         if (!e.detail.locationUpdate) {
             setLocation('')

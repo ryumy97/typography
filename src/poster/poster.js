@@ -191,9 +191,7 @@ export class Poster {
     }
 
     viewOthersFromLocation(e) {
-        console.log(e.detail.index, this.index);
         if (e.detail.index === this.index) {
-            console.log('asc')
             this.seeOthersToggle(e);
         }
     }

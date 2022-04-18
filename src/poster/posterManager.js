@@ -99,7 +99,6 @@ export class PosterManager {
 
     onSelect(e) {
         if (this.selectedIndex + 0.5 > e.detail.index && this.selectedIndex - 0.5 < e.detail.index) {
-            console.log(e.detail);
 
             const event = new CustomEvent('_selectPoster', {
                 detail: {
@@ -184,7 +183,6 @@ export class PosterManager {
     }
 
     removePosterEvents(index) {
-        console.log(index);
         const poster = this.posters.find(poster => poster.index === index);
 
         poster.removePosterEvents();

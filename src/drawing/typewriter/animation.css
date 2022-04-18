@@ -1,0 +1,21 @@
+.typing .text {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+
+    max-width: fit-content;
+    width: 100%;
+    min-width: 1px;
+    height: 1.25em;
+
+    border-right: .15em solid white;
+
+    animation: 
+        blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: white; }
+}

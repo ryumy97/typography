@@ -13,7 +13,7 @@ export function getContentNumberByName(name) {
     switch(name) {
         case 'Metaball':
             return 1;
-        case 'Typing':
+        case 'Typewriter':
             return 2;
         default: 
             return 0;

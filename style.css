@@ -178,6 +178,13 @@ canvas {
     color: #ffffff;
 
     z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typing .text {
+    font-size: 5em;
 }
 
 .keyboardinput {
