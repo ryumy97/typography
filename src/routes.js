@@ -15,6 +15,8 @@ export function getContentNumberByName(name) {
             return 1;
         case 'Typewriter':
             return 2;
+        case 'Gravity':
+            return 3;
         default: 
             return 0;
     }

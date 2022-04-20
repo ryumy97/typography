@@ -7,6 +7,7 @@ export class Poster {
 
         this.container = document.createElement('div');
         this.container.className = `container ${data.theme}`;
+        this.container.id = `poster_${data.title}`
 
         //heading
         this.headingContainer = document.createElement('div');

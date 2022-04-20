@@ -1,6 +1,6 @@
 import * as drawing from '../drawing/index.js';
 
-const pages = [1, 2];
+const pages = [1, 2, 3];
 
 export function getAllContents() {
     return pages.map(getContentMetadata);
@@ -18,6 +18,12 @@ export function getContent(number) {
             return {
                 drawing: new drawing.Typing(),
                 title: 'Typewriter',
+                number
+            }
+        case 3:
+            return {
+                drawing: new drawing.Gravity(),
+                title: 'Gravity',
                 number
             }
         default:
@@ -46,6 +52,14 @@ export function getContentMetadata(number) {
                 number,
                 description: 'Stack of typing animation',
                 imageUrl: '/assets/Typewriting.png'
+            }
+        case 3:
+            return {
+                title: 'Gravity',
+                theme: 'dark',
+                number,
+                description: 'Falling',
+                imageUrl: '/assets/Gravity.png'
             }
         default:
             return {
