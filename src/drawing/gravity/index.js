@@ -20,7 +20,7 @@ export class Gravity {
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
-        this.str = 'w'
+        this.str = 'Gravity'
         this.list = [];
         this.boxList = [];
 
