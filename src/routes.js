@@ -17,6 +17,8 @@ export function getContentNumberByName(name) {
             return 2;
         case 'Gravity':
             return 3;
+        case '2-bit':
+            return 4;
         default: 
             return 0;
     }

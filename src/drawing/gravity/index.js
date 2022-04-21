@@ -138,8 +138,6 @@ export class Gravity {
             bodies
         )
 
-        console.log(this.list);
-
         const texts = this.list.map(_ => {
             const pathEl = document.createElementNS(
                 'http://www.w3.org/2000/svg',
@@ -159,7 +157,6 @@ export class Gravity {
                 });
             }
 
-            console.log(points);
             return Bodies.fromVertices(
                 _.x,
                 _.y,
@@ -173,8 +170,6 @@ export class Gravity {
                 }, false, 0.05, 0.1, 0.1
             )
         })
-
-        console.log(texts);
 
         Composite.add(
             this.world,

@@ -27,7 +27,6 @@ export class World {
 
     colisionFix(ctx) {
         const length = this.list.length;
-        console.log('collisionCheck')
         for(let i = 0; i < length; i++) {
             const boxA = this.list[i];
             const collisionBoxA = boxA.getCollisionBox(ctx);
@@ -36,7 +35,6 @@ export class World {
                 const collisionBoxB = boxB.getCollisionBox(ctx);
 
                 const flag = doPolygonsIntersect(collisionBoxA.polygonList, collisionBoxB.polygonList);
-                console.log(flag);
                 if (flag) {
                     if (!boxA.isStationary) {
                         boxA.vx *= -0.9;

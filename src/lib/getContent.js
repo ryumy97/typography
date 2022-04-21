@@ -1,6 +1,6 @@
 import * as drawing from '../drawing/index.js';
 
-const pages = [1, 2, 3];
+const pages = [1, 2, 3, 4];
 
 export function getAllContents() {
     return pages.map(getContentMetadata);
@@ -26,6 +26,13 @@ export function getContent(number) {
                 title: 'Gravity',
                 number
             }
+        case 4:
+            return {
+                drawing: new drawing.TwoBit(),
+                title: '2-bit',
+                number
+            }
+
         default:
             return {
                 drawing: new drawing.Template(),
@@ -58,8 +65,15 @@ export function getContentMetadata(number) {
                 title: 'Gravity',
                 theme: 'dark',
                 number,
-                description: 'Falling',
+                description: 'Falling characters',
                 imageUrl: '/assets/Gravity.png'
+            }
+        case 4:
+            return {
+                title: '2-bit',
+                theme: 'dark',
+                number,
+                description: '2-bit particle texture',
             }
         default:
             return {
