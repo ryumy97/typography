@@ -73,7 +73,8 @@ export function getContentMetadata(number) {
                 title: '2-bit',
                 theme: 'dark',
                 number,
-                description: '2-bit particle texture',
+                description: '2-bit particle texture. User has ability to create an arrow that interacts with the surface.',
+                imageUrl: '/assets/2-bit.png'
             }
         default:
             return {

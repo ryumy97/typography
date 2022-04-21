@@ -74,6 +74,8 @@ export class TwoBit {
     textChange(str) {
         this.str = str;
 
+        this.currentArrow = null;
+        this.arrows = [];
         this.show(this.str)
     }
 
@@ -88,8 +90,7 @@ export class TwoBit {
         this.renderer.resize(this.sw, this.sh);
         this.text.resize(this.sw, this.sh);
 
-        this.show(this.str)
-
+        this.show(this.str);
     }
 
     show(str) {
