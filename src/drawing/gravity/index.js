@@ -20,7 +20,7 @@ export class Gravity {
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
-        this.str = 'Gravity'
+        this.str = 'w'
         this.list = [];
         this.boxList = [];
 
@@ -53,7 +53,7 @@ export class Gravity {
     }
 
     textChange(str) {
-        this.str = str.replace(/w+/, '');
+        this.str = str.replace(/[^a-zA-Z]/, '');
         this.createWorld()
     }
 
@@ -138,9 +138,7 @@ export class Gravity {
             bodies
         )
 
-        this.list.map(_ => {
-            _.draw(this.ctx);
-        })
+        console.log(this.list);
 
         const texts = this.list.map(_ => {
             const pathEl = document.createElementNS(
@@ -161,6 +159,7 @@ export class Gravity {
                 });
             }
 
+            console.log(points);
             return Bodies.fromVertices(
                 _.x,
                 _.y,
@@ -174,6 +173,8 @@ export class Gravity {
                 }, false, 0.05, 0.1, 0.1
             )
         })
+
+        console.log(texts);
 
         Composite.add(
             this.world,
