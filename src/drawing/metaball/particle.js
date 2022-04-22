@@ -18,7 +18,8 @@ export class ParticleManager {
             radius: 10
         }
 
-        document.addEventListener('pointermove', this.onMove.bind(this), false);
+        document.addEventListener('mousemove', this.onMove.bind(this), false);
+        document.addEventListener('touchmove', this.onTouch.bind(this), false);
     }
 
     resize(sw, sh, stage, x, y) {
@@ -84,6 +85,11 @@ export class ParticleManager {
 
             item.draw(ratio);
         }
+    }
+
+    onTouch(e) {
+        this.mouse.x = e.touches[0].clientX - this.x;
+        this.mouse.y = e.touches[0].clientY - this.y;
     }
 
     onMove(e) {

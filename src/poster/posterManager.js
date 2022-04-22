@@ -36,22 +36,58 @@ export class PosterManager {
         this.scrollEnabled = true;
         window.addEventListener('wheel', this.scrollEvent, false);
 
-        this.mouseClickEvent = this.onClick.bind(this);
-        window.addEventListener('pointerdown', this.mouseClickEvent, false);
-
         this.clicking = false;
         this.clickEnabled = true;
 
-        this.mouseMoveEvent = this.onMove.bind(this);
-        window.addEventListener('pointermove', this.mouseMoveEvent, false);
+        this.mouseClickEvent = this.onClick.bind(this);
+        window.addEventListener('mousedown', this.mouseClickEvent, false);
 
-        this.mouseClickEvent = this.onUp.bind(this);
-        window.addEventListener('pointerup', this.mouseClickEvent, false);
+        this.mouseMoveEvent = this.onMove.bind(this);
+        window.addEventListener('mousemove', this.mouseMoveEvent, false);
+
+        this.mouseUpEvent = this.onUp.bind(this);
+        window.addEventListener('mouseup', this.mouseUpEvent, false);
+
+        this.touchStartEvent = this.onTouch.bind(this);
+        window.addEventListener('touchstart', this.touchStartEvent, false);
+
+        this.touchMoveEvent = this.onTouchMove.bind(this);
+        window.addEventListener('touchmove', this.touchMoveEvent, false);
+
+        this.touchEndEvent = this.onUp.bind(this);
+        window.addEventListener('touchend', this.touchEndEvent, false);
 
         document.body.style.cursor = 'grab';
     }
 
+    onTouch(e) {
+        console.log(e);
+        if (this.clickEnabled) {
+            this.clicking = true;
+            this.y = e.touches[0].clientY;
+            document.body.style.cursor = 'grabbing';
+        }
+    }
+
+    onTouchMove(e) {
+        if (!this.clicking) {
+            return;
+        }
+
+        this.selectedIndex += (this.y - e.touches[0].clientY) / this.container.clientHeight * 3;
+
+        if (this.selectedIndex > this.maximum + 0.2 - 1) {
+            this.selectedIndex = this.maximum + 0.2 - 1;
+        }
+        if (this.selectedIndex < -0.2) {
+            this.selectedIndex = -0.2;
+        }
+
+        this.y = e.touches[0].clientY;
+    }
+
     onClick(e) {
+
         if (this.clickEnabled) {
             this.clicking = true;
             this.y = e.y;

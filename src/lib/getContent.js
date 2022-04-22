@@ -32,7 +32,12 @@ export function getContent(number) {
                 title: '2-bit',
                 number
             }
-
+        case 5:
+            return {
+                drawing: new drawing.Template(),
+                title: 'Wave',
+                number
+            }
         default:
             return {
                 drawing: new drawing.Template(),
@@ -75,6 +80,13 @@ export function getContentMetadata(number) {
                 number,
                 description: '2-bit particle texture. User has ability to create a projectile that interacts with the surface.',
                 imageUrl: '/assets/2-bit.png'
+            }
+        case 5:
+            return {
+                title: 'Wave',
+                theme: 'dark',
+                number,
+                description: 'Wave animation',
             }
         default:
             return {

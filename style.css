@@ -37,7 +37,7 @@ body {
     -webkit-font-smoothing: antialiased;
     font-family: 'Roboto', sans-serif;
 
-    overscroll-behavior-x: none;
+    overscroll-behavior-x: contain;
 }
 
 .container {

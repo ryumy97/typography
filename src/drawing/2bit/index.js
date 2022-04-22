@@ -47,8 +47,39 @@ export class TwoBit {
 
         this.currentArrow = null;
 
-        document.addEventListener('pointermove', this.onMove.bind(this), false);
-        document.addEventListener('click', this.addArrow.bind(this), false);
+        document.addEventListener('mousemove', this.onMove.bind(this), false);
+        document.addEventListener('mousedown', this.addArrow.bind(this), false);
+
+        document.addEventListener('touchstart', this.onTouch.bind(this), false);
+        document.addEventListener('touchmove', this.onTouchMove.bind(this), false);
+        document.addEventListener('touchend', this.onTouchEnd.bind(this), false);
+    }
+
+    onTouch(e) {
+        this.currentArrow = new Arrow(e.touches[0].clientX, e.touches[0].clientY);
+        this.container.addChild(this.currentArrow.graphic)
+
+        this.currentArrow.graphic.position.set(0, 0);
+
+        this.mouse.x = e.touches[0].clientX;
+        this.mouse.y = e.touches[0].clientY;
+    }
+
+    onTouchMove(e) {
+        this.mouse.x = e.touches[0].clientX;
+        this.mouse.y = e.touches[0].clientY;
+    }
+
+    onTouchEnd(e) {
+        console.log(e);
+        this.currentArrow.setArrowEnd(
+            this.currentArrow.endX,
+            this.currentArrow.endY
+        )
+        this.currentArrow.updateLine();
+        this.arrows.push(this.currentArrow);
+
+        this.currentArrow = null;
     }
 
     addArrow(e) {
