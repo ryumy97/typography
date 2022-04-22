@@ -49,7 +49,7 @@ export function getContentMetadata(number) {
                 title: 'Metaball',
                 theme: 'dark',
                 number,
-                description: 'Blur and threshold',
+                description: 'Blur and threshold filter',
                 imageUrl: '/assets/Metaball.png'
             }
         case 2:
@@ -65,7 +65,7 @@ export function getContentMetadata(number) {
                 title: 'Gravity',
                 theme: 'dark',
                 number,
-                description: 'Falling characters',
+                description: 'Falling characters using svg and matter.js',
                 imageUrl: '/assets/Gravity.png'
             }
         case 4:
