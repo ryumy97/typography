@@ -13,6 +13,12 @@ export function getTheme(theme) {
                 descriptionColor: '#99B68A',
                 backgroundColor: '#DFF0D3'
             }
+        case 'typewriter':
+            return {
+                textColor: '#E4F0FC',
+                descriptionColor: '#AED7FF',
+                backgroundColor: '#151C26'
+            }
         default:
             return {
                 textColor: '#ffffff',

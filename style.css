@@ -284,6 +284,7 @@ canvas {
 }
 
 .metadata p {
+    transition: color 0.25s ease-in-out;
     color: #aaa;
     width: 70%
 }

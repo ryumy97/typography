@@ -55,7 +55,7 @@ export function getContentMetadata(number) {
         case 2:
             return {
                 title: 'Typewriter',
-                theme: 'dark',
+                theme: 'typewriter',
                 number,
                 description: 'Stack of typing animation',
                 imageUrl: '/assets/Typewriting.png'

@@ -9,6 +9,11 @@
     color: #517D45
 }
 
+.container.typewriter {
+    background-color: #232937;
+    color: #AED7FF
+}
+
 /* Hover */
 .dark .hovering {
     color: white;
@@ -23,5 +28,43 @@
 }
 
 .twobit .hovering:hover {
-    color:#0C4500;
+    color: #0C4500;
+}
+
+.typewriter .hovering {
+    color: #DF4577;
+}
+
+.typewriter .hovering:hover {
+    color: #DF4577;
+}
+
+/* Others */
+
+.typewriter .heading {
+    color: #29E8A7;
+}
+
+.typewriter .headingContainer {
+    color: #30AE84;
+}
+
+.typewriter .description {
+    color: #91B4D4;
+}
+
+.typewriter .number {
+    color: #29E8A7;
+}
+
+.typewriter .projectUrl {
+    color: #DF4577;   
+}
+
+.typewriter .keyboardButton {
+    color: #DF4577;
+}
+
+.typewriter .posterDescription {
+    color: #DF4577
 }
