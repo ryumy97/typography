@@ -63,7 +63,7 @@ export function getContentMetadata(number) {
         case 3:
             return {
                 title: 'Gravity',
-                theme: 'dark',
+                theme: 'gravity',
                 number,
                 description: 'Falling characters using svg and matter.js',
                 imageUrl: '/assets/Gravity.png'

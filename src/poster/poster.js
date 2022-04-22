@@ -130,7 +130,7 @@ export class Poster {
 
         //key input
         this.keyboardinputContainer = document.createElement('div');
-        this.keyboardinputContainer.className = 'keyboardinput off';
+        this.keyboardinputContainer.className = `keyboardinput ${this.data.theme} off`;
 
         this.keyboardinput = document.createElement('input');
         this.keyboardinput.type = 'text';

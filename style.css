@@ -210,7 +210,7 @@ canvas {
 }
 
 .keyboardinput input {
-    background-color: #ffffff;
+    color: inherit;
     border: none;
 
     font-family: 'Roboto', sans-serif;

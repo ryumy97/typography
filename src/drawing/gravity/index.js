@@ -163,8 +163,8 @@ export class Gravity {
                 points,
                 {
                     render: {
-                        fillStyle: '#fff',
-                        strokeStyle: '#fff',
+                        fillStyle: '#DFC92C',
+                        strokeStyle: '#DFC92C',
                         lineWidth: 1
                     }
                 }, false, 0.05, 0.1, 0.1

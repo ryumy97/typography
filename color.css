@@ -14,6 +14,11 @@
     color: #AED7FF
 }
 
+.container.gravity {
+    background-color: #131B36;
+    color: #FF3750
+}
+
 /* Hover */
 .dark .hovering {
     color: white;
@@ -23,6 +28,7 @@
     color:red;
 }
 
+
 .twobit .hovering {
     color: #517D45;
 }
@@ -31,6 +37,7 @@
     color: #0C4500;
 }
 
+
 .typewriter .hovering {
     color: #DF4577;
 }
@@ -38,6 +45,60 @@
 .typewriter .hovering:hover {
     color: #DF4577;
 }
+
+
+.gravity .hovering {
+    color: #FF3750;
+}
+
+.gravity .hovering:hover {
+    color: #9C0918;
+}
+
+/* Keyboard Input */
+.keyboardinput.gravity {
+    background-color: #171F2F;
+}
+
+.keyboardinput.gravity input::placeholder {
+    background-color: #171F2F;
+    color: #9C0918;
+}
+
+.keyboardinput.gravity input {
+    background-color: #171F2F;
+    color: #FF3750;
+}
+
+.keyboardinput.typewriter {
+    background-color: #151C26;
+}
+
+.keyboardinput.typewriter input::placeholder {
+    background-color: #151C26;
+    color: #506477;
+}
+
+.keyboardinput.typewriter input {
+    background-color: #151C26;
+    color: #91B3D5;
+}
+
+
+.keyboardinput.twobit {
+    background-color: #517D45;
+}
+
+.keyboardinput.twobit input::placeholder {
+    background-color: #517D45;
+    color: #99B68A;
+}
+
+.keyboardinput.twobit input {
+    background-color: #517D45;
+    color: #DFF0D3;
+}
+
 
 /* Others */
 
