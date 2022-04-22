@@ -19,6 +19,8 @@ export function getContentNumberByName(name) {
             return 3;
         case '2-bit':
             return 4;
+        case 'Wave':
+            return 5;
         default: 
             return 0;
     }

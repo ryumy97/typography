@@ -71,7 +71,6 @@ export class TwoBit {
     }
 
     onTouchEnd(e) {
-        console.log(e);
         this.currentArrow.setArrowEnd(
             this.currentArrow.endX,
             this.currentArrow.endY

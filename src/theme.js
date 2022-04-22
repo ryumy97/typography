@@ -25,6 +25,12 @@ export function getTheme(theme) {
                 descriptionColor: '#9C0918',
                 backgroundColor: '#190E38'
             }
+        case 'wave': 
+            return {
+                textColor: '#4CA9D0',
+                descriptionColor: '#72D0E9',
+                backgroundColor: '#ddeeff'
+            }
         default:
             return {
                 textColor: '#ffffff',

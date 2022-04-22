@@ -61,7 +61,6 @@ export class PosterManager {
     }
 
     onTouch(e) {
-        console.log(e);
         if (this.clickEnabled) {
             this.clicking = true;
             this.y = e.touches[0].clientY;

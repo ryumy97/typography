@@ -1,6 +1,6 @@
 import * as drawing from '../drawing/index.js';
 
-const pages = [1, 2, 3, 4];
+const pages = [1, 2, 3, 4, 5];
 
 export function getAllContents() {
     return pages.map(getContentMetadata);
@@ -34,7 +34,7 @@ export function getContent(number) {
             }
         case 5:
             return {
-                drawing: new drawing.Template(),
+                drawing: new drawing.Wave(),
                 title: 'Wave',
                 number
             }
@@ -84,9 +84,10 @@ export function getContentMetadata(number) {
         case 5:
             return {
                 title: 'Wave',
-                theme: 'dark',
+                theme: 'wave',
                 number,
                 description: 'Wave animation',
+                imageUrl: '/assets/Wave.png'
             }
         default:
             return {
