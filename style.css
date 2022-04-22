@@ -32,6 +32,7 @@ body {
     overflow: hidden;
 
     background-color: #111111;
+    transition: background-color 0.25s ease-in-out;
     
     -webkit-font-smoothing: antialiased;
     font-family: 'Roboto', sans-serif;
@@ -71,11 +72,6 @@ body {
     height: fit-content;
 }
 
-.container.dark {
-    background-color: #000000;
-    color: white;
-}
-
 .headingContainer {
     grid-column: 2;
     grid-row: 2;
@@ -101,7 +97,6 @@ body {
     align-self: end;
 
     font-size: 0.9em;
-    color: white;
 
     z-index: 100;
 }
@@ -132,7 +127,6 @@ body {
     margin-bottom: 1em;
     font-style: italic;
     text-decoration: none;
-    color: white;
 }
 
 .keyboardButton {
@@ -143,14 +137,12 @@ body {
 }
 
 .hovering {
-    color: white;
     transition: 0.25s ease-in-out;
 
     z-index: 100;
 }
 
 .hovering:hover {
-    color:red;
     cursor: pointer;
 
     transition: 0.25s ease-in-out;
@@ -277,6 +269,8 @@ canvas {
     align-content: center;
 
     font-size: 200%;
+
+    transition: color 0.25s ease-in-out;
 }
 
 

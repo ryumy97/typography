@@ -19,14 +19,14 @@ export class Arrow {
 
     updateLine() {
         this.graphic.clear();
-        this.graphic.lineStyle(1, 0xffffff)
+        this.graphic.lineStyle(1, 0x0C4500)
             .moveTo(this.startX, this.startY)
             .lineTo(this.endX, this.endY);
     }
 
     updateArrow() {
         this.graphic.clear();
-        this.graphic.lineStyle(1, 0xffffff)
+        this.graphic.lineStyle(1, 0x0C4500)
             .arc(this.x, this.y, this.radius / 2, 0, 2 * Math.PI);
 
         this.x += (this.endX - this.x) * 0.01;

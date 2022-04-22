@@ -1,4 +1,5 @@
 import { getAllContents } from '../lib/getContent.js';
+import { getTheme } from '../theme.js';
 import { Poster } from './poster.js';
 
 export class PosterManager {
@@ -153,6 +154,20 @@ export class PosterManager {
 
     update(e) {
         this.currentIndex += (this.selectedIndex - this.currentIndex) * 0.1;
+        if (this.currentIndex > 0) {
+            const rounded = Math.round(this.currentIndex);
+            const theme = getTheme(this.posters[rounded].data.theme);
+
+            document.body.style.backgroundColor = theme.backgroundColor;
+            document.querySelectorAll('.metadata').forEach(_ => {
+                _.style.color = theme.textColor;
+            })
+
+            document.querySelectorAll('.metadata p').forEach(_ => {
+                _.style.color = theme.descriptionColor;
+            })
+        }
+
         this.move();
     }
 

@@ -71,7 +71,7 @@ export function getContentMetadata(number) {
         case 4:
             return {
                 title: '2-bit',
-                theme: 'dark',
+                theme: 'twobit',
                 number,
                 description: '2-bit particle texture. User has ability to create an arrow that interacts with the surface.',
                 imageUrl: '/assets/2-bit.png'

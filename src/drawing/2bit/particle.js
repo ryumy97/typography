@@ -7,11 +7,11 @@ export class Particle {
         this.sprite.scale.set(this.ballSize);
         this.sprite.anchor.set(0.5,0.5);
 
-        this.sprite.tint = 0xffffff;
+        this.sprite.tint = 0x517D45;
 
         this.sprite.interactive = true;
 
-        this.alpha = pos.alpha;
+        this.alpha = 0;
         this.savedAlpha = pos.alpha;
 
         this.savedX = pos.x;

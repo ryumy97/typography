@@ -1,0 +1,27 @@
+/* Container */
+.container.dark {
+    background-color: #000000;
+    color: white;
+}
+
+.container.twobit {
+    background-color: #99B68A;;
+    color: #517D45
+}
+
+/* Hover */
+.dark .hovering {
+    color: white;
+}
+
+.dark .hovering:hover {
+    color:red;
+}
+
+.twobit .hovering {
+    color: #517D45;
+}
+
+.twobit .hovering:hover {
+    color:#0C4500;
+}
