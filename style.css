@@ -40,6 +40,12 @@ body {
     overscroll-behavior-x: contain;
 }
 
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 0.75rem;
+    }
+}
+
 .container {
     max-width: 75vh;
     width: 100%;
@@ -231,6 +237,13 @@ canvas {
     flex-wrap: nowrap;
     justify-content: center;
     align-content: center;
+
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);    
+}
+
+.thumbnailContainer.move {
+    transform: translateX(-100vw);
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .thumbnailScroller {
@@ -287,4 +300,87 @@ canvas {
     transition: color 0.25s ease-in-out;
     color: #aaa;
     width: 70%
+}
+
+.aboutContainer {
+    position: fixed;
+
+    text-overflow: clip;
+    overflow: hidden;
+
+    top: 0;
+    right: 0;
+
+    height: 1em;
+
+    margin: 0.5em 1em;
+
+    color: white;    
+    
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    z-index: 100;
+}
+
+.aboutContainer.hide {
+    transform: translateY(-200%);
+    
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.aboutContainer .back {
+    transform: translateY(-200%);
+    
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.aboutContainer.show .back {
+    transform: translateY(-100%);
+    
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.aboutContainer .about {
+    transform: translateY(0);
+    
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.aboutContainer.show .about {
+    transform: translateY(100%);
+    
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.aboutContentContainer {
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    color: white;
+
+    font-size: 0.8em;
+
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.aboutContentContainer.hide {
+    transform: translateX(100%);
+    
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.aboutContent {
+    max-width: 40%;
+}
+
+.line {
+    border-top: solid 1px #ffffff;
+    margin: 1em 0em;
 }

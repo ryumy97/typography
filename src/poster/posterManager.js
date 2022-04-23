@@ -1,14 +1,18 @@
 import { getAllContents } from '../lib/getContent.js';
 import { getTheme } from '../theme.js';
 import { Poster } from './poster.js';
+import { About } from '../about.js';
 
 export class PosterManager {
     constructor(selectedIndex) {
         this.container = document.createElement('div');
+        this.container.id = 'thumbnailContainer';
         this.container.className = 'thumbnailContainer';
 
         this.scroller = document.createElement('div');
         this.scroller.className = 'thumbnailScroller';
+
+        this.about = new About();
 
         this.selectedIndex = selectedIndex;
         this.currentIndex = -5;
@@ -86,7 +90,6 @@ export class PosterManager {
     }
 
     onClick(e) {
-
         if (this.clickEnabled) {
             this.clicking = true;
             this.y = e.y;
@@ -160,6 +163,9 @@ export class PosterManager {
             this.clickEnabled = false;
 
             document.body.style.cursor = 'default';
+
+            this.about.buttonContainer.classList.add('hide');
+
             return;
         }
 
@@ -199,6 +205,23 @@ export class PosterManager {
             })
 
             document.querySelectorAll('.metadata p').forEach(_ => {
+                _.style.color = theme.descriptionColor;
+            })
+
+            const aboutButton = document.getElementById('aboutContainer');
+            const aboutButtonHiding = aboutButton.classList.contains('hide') ? 'hide' : '';
+            const aboutButtonShowing = aboutButton.classList.contains('show') ? 'show' : '';
+            aboutButton.className = `aboutContainer ${aboutButtonHiding} ${aboutButtonShowing} ${this.posters[rounded].data.theme}`;
+            
+            
+            const aboutContent = document.getElementById('aboutContentContainer');
+            const aboutContentHiding = aboutContent.classList.contains('hide') ? 'hide' : '';
+            aboutContent.className = `aboutContentContainer ${aboutContentHiding} ${this.posters[rounded].data.theme}`
+            aboutContent.style.color = theme.textColor;
+            aboutContent.querySelectorAll('.line').forEach(_ => {
+                _.style.borderColor = theme.descriptionColor;
+            })
+            aboutContent.querySelectorAll('p').forEach(_ => {
                 _.style.color = theme.descriptionColor;
             })
         }
