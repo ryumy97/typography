@@ -35,11 +35,11 @@ export class About {
                 <div class='line'></div>
                 <p>
                     This website holds a collection of interactive experience of kinetic typography.<br/>
-                    Each of the expereinces is displayed as a poster with theme and image describing the characteristic of the typography.<br/>
+                    Each of the experiences is displayed as a poster with theme and image describing the characteristic of the typography.<br/>
                     When the poster is clicked, the view zooms into the poster, then the interactive typography is displayed.<br/>
                     Users can change the word by clicking the word keyboard, which will display the input for the new word to be displayed.<br/>
                     <br/>
-                    If you enjoyed the expereince and wish to contact me, <br>
+                    If you enjoyed the experiences and wish to contact me, <br>
                     Email to <a href='mailto:inha.ryu.97@gmail.com' class='hovering'>inha.ryu.97@gmail.com</a><br/>
                     <br/>
                     Copyright © 2022 In Ha Ryu. All rights reserved.
