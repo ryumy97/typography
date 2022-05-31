@@ -21,6 +21,8 @@ export function getContentNumberByName(name) {
             return 4;
         case 'Wave':
             return 5;
+        case 'Koru':
+            return 6;
         default: 
             return 0;
     }

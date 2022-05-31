@@ -24,6 +24,11 @@
     color: #ffffff
 }
 
+.container.koru {
+    background-color: #669835;
+    color: #ffffff;
+}
+
 /* Hover */
 .dark .hovering {
     color: white;
@@ -68,6 +73,15 @@
 .wave .hovering:hover {
     color: #3E7A95;
 }
+
+.koru .hovering {
+    color: #D5C737;
+}
+
+.koru .hovering:hover {
+    color: #CFAB47;
+}
+
 
 /* Keyboard Input */
 .keyboardinput.gravity {
@@ -130,6 +144,21 @@
 }
 
 
+.keyboardinput.koru {
+    background-color: #ffffff;
+}
+
+.keyboardinput.koru input::placeholder {
+    background-color: #ffffff;
+    color: #5C8438;
+}
+
+.keyboardinput.koru input {
+    background-color: #ffffff;
+    color: #3F552E;
+}
+
+
 /* Others */
 
 .typewriter .heading {
@@ -160,7 +189,6 @@
     color: #DF4577
 }
 
-
 .wave .projectUrl {
     color: #4CA9D0;   
 }
@@ -171,4 +199,16 @@
 
 .wave .posterDescription {
     color: #4CA9D0
+}
+
+.koru .projectUrl {
+    color: #D5C737;   
+}
+
+.koru .keyboardButton {
+    color: #D5C737;
+}
+
+.koru .posterDescription {
+    color: #D5C737
 }

@@ -31,6 +31,12 @@ export function getTheme(theme) {
                 descriptionColor: '#72D0E9',
                 backgroundColor: '#ddeeff'
             }
+        case 'koru':
+            return {
+                textColor: '#ffffff',
+                descriptionColor: '#eeeeee',
+                backgroundColor: '#5C8438'
+            }
         default:
             return {
                 textColor: '#ffffff',

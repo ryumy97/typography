@@ -1,6 +1,6 @@
 import * as drawing from '../drawing/index.js';
 
-const pages = [1, 2, 3, 4, 5];
+const pages = [1, 2, 3, 4, 5, 6];
 
 export function getAllContents() {
     return pages.map(getContentMetadata);
@@ -37,6 +37,12 @@ export function getContent(number) {
                 drawing: new drawing.Wave(),
                 title: 'Wave',
                 number
+            }
+        case 6:
+            return {
+               drawing: new drawing.Koru(),
+               title: 'Koru',
+               number 
             }
         default:
             return {
@@ -88,6 +94,13 @@ export function getContentMetadata(number) {
                 number,
                 description: 'Wave animation',
                 imageUrl: '/assets/Wave.png'
+            }
+        case 6:
+            return {
+                title: 'Koru',
+                theme: 'koru',
+                number,
+                description: 'Spiral Animation like Koru'
             }
         default:
             return {
