@@ -100,7 +100,8 @@ export function getContentMetadata(number) {
                 title: 'Koru',
                 theme: 'koru',
                 number,
-                description: 'Spiral Animation like Koru'
+                description: 'Spiral Animation like Koru',
+                imageUrl: '/assets/Koru.png'
             }
         default:
             return {
