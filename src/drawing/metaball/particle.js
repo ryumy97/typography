@@ -8,15 +8,15 @@ export class ParticleManager {
         this.text = new Text();
         this.str = 'Metaball';
 
-        this.texture = PIXI.Texture.from('/assets/particle.png');
+        this.texture = PIXI.Texture.from('/assets/particles/particle.png');
 
         this.particles = [];
 
         this.mouse = {
             x: 0,
             y: 0,
-            radius: 10
-        }
+            radius: 10,
+        };
 
         document.addEventListener('mousemove', this.onMove.bind(this), false);
         document.addEventListener('touchmove', this.onTouch.bind(this), false);
@@ -26,13 +26,13 @@ export class ParticleManager {
         this.x = x;
         this.y = y;
 
-        this.ballSize = sh / 1000 * 0.2;
+        this.ballSize = (sh / 1000) * 0.2;
 
         this.mouse.radius = sh * 0.025;
         this.ballRadius = sh * 0.025;
 
         this.text.resize(sw, sh);
-        this.show(stage, this.str)
+        this.show(stage, this.str);
     }
 
     show(stage, str) {
@@ -40,33 +40,35 @@ export class ParticleManager {
         if (this.container) {
             stage.removeChild(this.container);
         }
-        
+
         this.pos = this.text.setText(str);
 
-        this.container = new PIXI.ParticleContainer(
-            this.pos.length,
-            {
-                vertices: false,
-                position: true,
-                rotation: false,
-                scale: false,
-                uvs: false,
-                tint: false
-            }
-        );
+        this.container = new PIXI.ParticleContainer(this.pos.length, {
+            vertices: false,
+            position: true,
+            rotation: false,
+            scale: false,
+            uvs: false,
+            tint: false,
+        });
         stage.addChild(this.container);
 
         this.particles = [];
-        
+
         for (let i = 0; i < this.pos.length; i++) {
-            const item = new Particle(this.pos[i], this.texture, this.ballSize, this.ballRadius);
+            const item = new Particle(
+                this.pos[i],
+                this.texture,
+                this.ballSize,
+                this.ballRadius
+            );
             this.container.addChild(item.sprite);
             this.particles.push(item);
         }
     }
 
     draw(ratio) {
-        for (let i = 0; i< this.particles.length; i++) {
+        for (let i = 0; i < this.particles.length; i++) {
             const item = this.particles[i];
             const dx = this.mouse.x - item.x;
             const dy = this.mouse.y - item.y;
@@ -117,7 +119,7 @@ export class Particle {
         this.radius = ballRadius;
     }
 
-    FRICTION = 0.90;
+    FRICTION = 0.9;
     MOVE_SPEED = 0.07;
 
     draw(ratio) {

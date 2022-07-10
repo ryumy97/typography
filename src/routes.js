@@ -1,16 +1,16 @@
 export function getLocation() {
     const location = window.location.hash.replace(/\#\!\//i, '');
-    console.log(location)
+    console.log(location);
     return location;
 }
 
 export function setLocation(loc) {
-    console.log('location Update')
+    console.log('location Update');
     window.history.pushState({}, `Typography - ${loc}`, `#!/${loc}`);
 }
 
 export function getContentNumberByName(name) {
-    switch(name) {
+    switch (name) {
         case 'Metaball':
             return 1;
         case 'Typewriter':
@@ -23,7 +23,9 @@ export function getContentNumberByName(name) {
             return 5;
         case 'Koru':
             return 6;
-        default: 
+        case 'Fireflies':
+            return 7;
+        default:
             return 0;
     }
 }

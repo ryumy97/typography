@@ -1,214 +1,243 @@
 /* Container */
 .container.dark {
-    background-color: #000000;
-    color: white;
+  background-color: #000000;
+  color: white;
 }
 
 .container.twobit {
-    background-color: #99B68A;;
-    color: #517D45
+  background-color: #99b68a;
+  color: #517d45;
 }
 
 .container.typewriter {
-    background-color: #232937;
-    color: #AED7FF
+  background-color: #232937;
+  color: #aed7ff;
 }
 
 .container.gravity {
-    background-color: #131B36;
-    color: #FF3750
+  background-color: #131b36;
+  color: #ff3750;
 }
 
 .container.wave {
-    background-color: #c1e4fe;
-    color: #ffffff
+  background-color: #c1e4fe;
+  color: #ffffff;
 }
 
 .container.koru {
-    background-color: #669835;
-    color: #ffffff;
+  background-color: #669835;
+  color: #ffffff;
+}
+
+.container.fireflies {
+  background-color: #051427;
+  color: #d5db3d;
 }
 
 /* Hover */
 .dark .hovering {
-    color: white;
+  color: white;
 }
 
 .dark .hovering:hover {
-    color:red;
+  color: red;
 }
 
-
 .twobit .hovering {
-    color: #517D45;
+  color: #517d45;
 }
 
 .twobit .hovering:hover {
-    color: #0C4500;
+  color: #0c4500;
 }
 
-
 .typewriter .hovering {
-    color: #DF4577;
+  color: #df4577;
 }
 
 .typewriter .hovering:hover {
-    color: #AF3961;
+  color: #af3961;
 }
 
-
 .gravity .hovering {
-    color: #FF3750;
+  color: #ff3750;
 }
 
 .gravity .hovering:hover {
-    color: #9C0918;
+  color: #9c0918;
 }
 
-
 .wave .hovering {
-    color: #4CA9D0;
+  color: #4ca9d0;
 }
 
 .wave .hovering:hover {
-    color: #3E7A95;
+  color: #3e7a95;
 }
 
 .koru .hovering {
-    color: #D5C737;
+  color: #d5c737;
 }
 
 .koru .hovering:hover {
-    color: #CFAB47;
+  color: #cfab47;
 }
 
+.fireflies .hovering {
+  color: #aab568;
+}
+
+.fireflies .hovering:hover {
+  color: #f3ea50;
+}
 
 /* Keyboard Input */
 .keyboardinput.gravity {
-    background-color: #171F2F;
+  background-color: #171f2f;
 }
 
 .keyboardinput.gravity input::placeholder {
-    background-color: #171F2F;
-    color: #9C0918;
+  background-color: #171f2f;
+  color: #9c0918;
 }
 
 .keyboardinput.gravity input {
-    background-color: #171F2F;
-    color: #FF3750;
+  background-color: #171f2f;
+  color: #ff3750;
 }
 
-
 .keyboardinput.typewriter {
-    background-color: #151C26;
+  background-color: #151c26;
 }
 
 .keyboardinput.typewriter input::placeholder {
-    background-color: #151C26;
-    color: #506477;
+  background-color: #151c26;
+  color: #506477;
 }
 
 .keyboardinput.typewriter input {
-    background-color: #151C26;
-    color: #91B3D5;
+  background-color: #151c26;
+  color: #91b3d5;
 }
 
-
 .keyboardinput.twobit {
-    background-color: #517D45;
+  background-color: #517d45;
 }
 
 .keyboardinput.twobit input::placeholder {
-    background-color: #517D45;
-    color: #99B68A;
+  background-color: #517d45;
+  color: #99b68a;
 }
 
 .keyboardinput.twobit input {
-    background-color: #517D45;
-    color: #DFF0D3;
+  background-color: #517d45;
+  color: #dff0d3;
 }
 
-
 .keyboardinput.wave {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .keyboardinput.wave input::placeholder {
-    background-color: #ffffff;
-    color: #c1e4fe;
+  background-color: #ffffff;
+  color: #c1e4fe;
 }
 
 .keyboardinput.wave input {
-    background-color: #ffffff;
-    color: #4CA9D0;
+  background-color: #ffffff;
+  color: #4ca9d0;
 }
 
-
 .keyboardinput.koru {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .keyboardinput.koru input::placeholder {
-    background-color: #ffffff;
-    color: #5C8438;
+  background-color: #ffffff;
+  color: #5c8438;
 }
 
 .keyboardinput.koru input {
-    background-color: #ffffff;
-    color: #3F552E;
+  background-color: #ffffff;
+  color: #3f552e;
 }
 
+.keyboardinput.fireflies {
+  background-color: #110d12;
+}
+
+.keyboardinput.fireflies input::placeholder {
+  color: #aab568;
+  background-color: #110d12;
+}
+
+.keyboardinput.fireflies input {
+  color: #d5db3d;
+  background-color: #110d12;
+}
 
 /* Others */
 
 .typewriter .heading {
-    color: #29E8A7;
+  color: #29e8a7;
 }
 
 .typewriter .headingContainer {
-    color: #30AE84;
+  color: #30ae84;
 }
 
 .typewriter .description {
-    color: #91B4D4;
+  color: #91b4d4;
 }
 
 .typewriter .number {
-    color: #29E8A7;
+  color: #29e8a7;
 }
 
 .typewriter .projectUrl {
-    color: #DF4577;   
+  color: #df4577;
 }
 
 .typewriter .keyboardButton {
-    color: #DF4577;
+  color: #df4577;
 }
 
 .typewriter .posterDescription {
-    color: #DF4577
+  color: #df4577;
 }
 
 .wave .projectUrl {
-    color: #4CA9D0;   
+  color: #4ca9d0;
 }
 
 .wave .keyboardButton {
-    color: #4CA9D0;
+  color: #4ca9d0;
 }
 
 .wave .posterDescription {
-    color: #4CA9D0
+  color: #4ca9d0;
 }
 
 .koru .projectUrl {
-    color: #D5C737;   
+  color: #d5c737;
 }
 
 .koru .keyboardButton {
-    color: #D5C737;
+  color: #d5c737;
 }
 
 .koru .posterDescription {
-    color: #D5C737
+  color: #d5c737;
+}
+
+.fireflies .projectUrl {
+  color: #aab568;
+}
+
+.fireflies .keyboardButton {
+  color: #aab568;
+}
+
+.fireflies .posterDescription {
+  color: #aab568;
 }

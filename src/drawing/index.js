@@ -3,5 +3,6 @@ export * from './template/index.js';
 export * from './typewriter/index.js';
 export * from './gravity/index.js';
 export * from './2bit/index.js';
-export * from './wave/index.js'
+export * from './wave/index.js';
 export * from './koru/index.js';
+export * from './fireflies/index.js';

@@ -1,6 +1,6 @@
-import { Text } from "./text.js";
-import { Particle } from "./particle.js";
-import { Arrow } from "./arrow.js";
+import { Text } from './text.js';
+import { Particle } from './particle.js';
+import { Arrow } from './arrow.js';
 
 export class TwoBit {
     constructor() {
@@ -9,13 +9,13 @@ export class TwoBit {
         this.renderer = new PIXI.Renderer({
             antialias: false,
             backgroundAlpha: 0,
-            resolution: (window.devicePixelRatio > 1) ? 2 : 1,
+            resolution: window.devicePixelRatio > 1 ? 2 : 1,
             autoDensity: true,
             powerPreference: 'high-performance',
-        })
+        });
 
         this.renderer.view.style.imageRendering = 'pixelated';
-        
+
         this.renderer.view.style.width = '100%';
         this.renderer.view.style.height = '100%';
 
@@ -33,15 +33,15 @@ export class TwoBit {
             new PIXI.Texture.from('/assets/2bit/07.png'),
             new PIXI.Texture.from('/assets/2bit/08.png'),
             PIXI.Texture.EMPTY,
-        ]
+        ];
 
-        this.str = "2-bit";
+        this.str = '2-bit';
 
         this.mouse = {
             x: 0,
             y: 0,
-            radius: 50
-        }
+            radius: 50,
+        };
 
         this.arrows = [];
 
@@ -51,13 +51,24 @@ export class TwoBit {
         document.addEventListener('mousedown', this.addArrow.bind(this), false);
 
         document.addEventListener('touchstart', this.onTouch.bind(this), false);
-        document.addEventListener('touchmove', this.onTouchMove.bind(this), false);
-        document.addEventListener('touchend', this.onTouchEnd.bind(this), false);
+        document.addEventListener(
+            'touchmove',
+            this.onTouchMove.bind(this),
+            false
+        );
+        document.addEventListener(
+            'touchend',
+            this.onTouchEnd.bind(this),
+            false
+        );
     }
 
     onTouch(e) {
-        this.currentArrow = new Arrow(e.touches[0].clientX, e.touches[0].clientY);
-        this.container.addChild(this.currentArrow.graphic)
+        this.currentArrow = new Arrow(
+            e.touches[0].clientX,
+            e.touches[0].clientY
+        );
+        this.container.addChild(this.currentArrow.graphic);
 
         this.currentArrow.graphic.position.set(0, 0);
 
@@ -74,7 +85,7 @@ export class TwoBit {
         this.currentArrow.setArrowEnd(
             this.currentArrow.endX,
             this.currentArrow.endY
-        )
+        );
         this.currentArrow.updateLine();
         this.arrows.push(this.currentArrow);
 
@@ -84,12 +95,11 @@ export class TwoBit {
     addArrow(e) {
         if (!this.currentArrow) {
             this.currentArrow = new Arrow(e.clientX, e.clientY);
-            this.container.addChild(this.currentArrow.graphic)
+            this.container.addChild(this.currentArrow.graphic);
 
             this.currentArrow.graphic.position.set(0, 0);
-        }
-        else {
-            this.currentArrow.setArrowEnd(e.clientX, e.clientY)
+        } else {
+            this.currentArrow.setArrowEnd(e.clientX, e.clientY);
             this.currentArrow.updateLine();
             this.arrows.push(this.currentArrow);
 
@@ -106,7 +116,7 @@ export class TwoBit {
 
         this.currentArrow = null;
         this.arrows = [];
-        this.show(this.str)
+        this.show(this.str);
     }
 
     resize() {
@@ -132,29 +142,21 @@ export class TwoBit {
 
         this.pos = this.text.setText(str);
 
-        this.container = new PIXI.Container(
-            this.pos.length,
-            {
-                vertices: false,
-                position: true,
-                rotation: false,
-                scale: false,
-                uvs: true,
-                tint: false
-            }
-        );
+        this.container = new PIXI.Container(this.pos.length, {
+            vertices: false,
+            position: true,
+            rotation: false,
+            scale: false,
+            uvs: true,
+            tint: false,
+        });
         this.stage.addChild(this.container);
 
         this.pos = this.text.setText(this.str);
         this.particles = [];
 
         for (let i = 0; i < this.pos.length; i++) {
-            const item = new Particle(
-                this.pos[i], 
-                this.textures,
-                1,
-                10
-                );
+            const item = new Particle(this.pos[i], this.textures, 1, 10);
             this.particles.push(item);
             this.container.addChild(item.sprite);
         }
@@ -165,11 +167,11 @@ export class TwoBit {
 
         this.arrows.map((arrow) => {
             this.container.addChild(arrow.graphic);
-        })
+        });
     }
 
     alphaUpdate(x, y, radius) {
-        for (let i = 0; i< this.particles.length; i++) {
+        for (let i = 0; i < this.particles.length; i++) {
             const item = this.particles[i];
             const dx = x - item.x;
             const dy = y - item.y;
@@ -183,23 +185,23 @@ export class TwoBit {
     }
 
     draw(progress, elapsed) {
-        const ratio = 60 * elapsed / 1000;
+        const ratio = (60 * elapsed) / 1000;
 
         if (this.currentArrow) {
             this.currentArrow.setArrowEnd(this.mouse.x, this.mouse.y);
             this.currentArrow.updateLine();
         }
 
-        this.arrows.forEach(_ => {
+        this.arrows.forEach((_) => {
             _.updateArrow();
             this.alphaUpdate(_.x, _.y, _.radius);
-        })
+        });
 
         this.alphaUpdate(this.mouse.x, this.mouse.y, this.mouse.radius);
-        
-        this.particles.forEach(_ => {
+
+        this.particles.forEach((_) => {
             _.draw(ratio);
-        })
+        });
 
         this.renderer.render(this.stage);
     }
